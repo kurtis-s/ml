@@ -1,6 +1,5 @@
 *.pdf
 ml_login_data.mat
-ml_login_data.mat
 octave-core
 submitWeb.m
 submit.m
