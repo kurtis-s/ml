@@ -11,6 +11,20 @@ figure; hold on;
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
 %
+hold on;
+for p=1:length(y)
+    if y(p) == 1
+        display("plotting 1")
+        display(X(p,1))
+        display(X(p,2))
+        plot(X(p, 1), X(p, 2), 'r.');
+    else,
+        display("plotting 2")
+        display(X(p,1))
+        display(X(p,2))
+        plot(X(p, 1), X(p, 2), '.');
+end
+hold off;
 
 
 
