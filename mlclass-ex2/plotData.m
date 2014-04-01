@@ -11,15 +11,9 @@ figure; hold on;
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
 %
-
-
-
-
-
-
-
-
-
+admitted = X(find(y==1), :);
+not_admitted = X(find(y==0), :);
+plot(admitted(:,1), admitted(:,2), '+k', not_admitted(:,1), not_admitted(:,2), 'ok', 'markerfacecolor', 'y');
 % =========================================================================
 
 
