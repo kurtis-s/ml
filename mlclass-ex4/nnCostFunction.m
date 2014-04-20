@@ -62,26 +62,16 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 % -------------------------------------------------------------
+X = [ones(m,1), X]; %Add column of ones to X
+Y = sparse(1:m, y, 1, m, num_labels); %Convert y to dummy vars matrix
+h1 = sigmoid(X*Theta1');
+h2 = sigmoid([ones(m,1), h1]*Theta2');
 
+for z=1:m,
+    J += -Y(z,:)*log(h2(z,:))'-(1-Y(z,:))*log(1-h2(z,:))';
+end
+J = (1/m)*J;
 % =========================================================================
 
 % Unroll gradients
