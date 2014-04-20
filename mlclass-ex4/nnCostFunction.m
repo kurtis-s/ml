@@ -73,10 +73,40 @@ for z=1:m,
 end
 J = (1/m)*J;
 
-%Add Regularization
+%Add regularization
 Theta1_NoBiasTerm = Theta1(:, 2:end);
 Theta2_NoBiasTerm = Theta2(:, 2:end);
 J += (lambda/(2*m))*(sum(Theta1_NoBiasTerm(:).^2) + sum(Theta2_NoBiasTerm(:).^2));
+
+%Back propogation
+Delta1 = zeros(size(Theta1_NoBiasTerm));
+Delta2 = zeros(size(Theta2_NoBiasTerm));
+for t=1:m,
+    a1 = X(t,:)'; %X already has the bias term added in
+    z2 = Theta1*a1;
+    a2 = [1; sigmoid(z2)];
+    z3 = Theta2*a2;
+    a3 = sigmoid(z3);
+
+    delta3 = a3 - Y'(:,t);
+    delta2 = Theta2'*delta3.*(a2.*(1-a2));
+%    size delta2
+%    size(a1) %a1 is 401x1
+%    display(a1)
+%    size(delta2(2:end)) %delta2 is 25x1
+%    display('theta1')
+%    size(Theta1_NoBiasTerm) % 25x400
+%    display('theta2')
+%    size(Theta2_NoBiasTerm) % 10x25
+%    Delta = delta2*a1'
+%    size(delta2) %26x1
+%    size(delta2(2:end)) %25x1
+%    size(a1)
+%    size(a1(2:end))
+    Delta1 += delta2(2:end)*a1(2:end)';
+end
+%Theta1_grad = (1/m)*Delta1 %size of Theta1
+%Theta2_grad = (1/m)*Delta2 %size of theta2
 % =========================================================================
 
 % Unroll gradients
