@@ -96,6 +96,9 @@ for t=1:m,
 end
 Theta1_grad = (1/m)*Delta1;
 Theta2_grad = (1/m)*Delta2;
+%Back propogation regularization
+Theta1_grad = [Theta1_grad(:,1), (Theta1_grad(:,2:end) + (lambda/m)*Theta1_NoBiasTerm)];
+Theta2_grad = [Theta2_grad(:,1), (Theta2_grad(:,2:end) + (lambda/m)*Theta2_NoBiasTerm)];
 % =========================================================================
 
 % Unroll gradients
