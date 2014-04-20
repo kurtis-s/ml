@@ -79,8 +79,8 @@ Theta2_NoBiasTerm = Theta2(:, 2:end);
 J += (lambda/(2*m))*(sum(Theta1_NoBiasTerm(:).^2) + sum(Theta2_NoBiasTerm(:).^2));
 
 %Back propogation
-Delta1 = zeros(size(Theta1_NoBiasTerm));
-Delta2 = zeros(size(Theta2_NoBiasTerm));
+Delta1 = zeros(size(Theta1));
+Delta2 = zeros(size(Theta2));
 for t=1:m,
     a1 = X(t,:)'; %X already has the bias term added in
     z2 = Theta1*a1;
@@ -91,8 +91,8 @@ for t=1:m,
     delta3 = a3 - Y'(:,t);
     delta2 = Theta2'*delta3.*(a2.*(1-a2));
 
-    Delta1 += delta2(2:end)*a1(2:end)';
-    Delta2 += delta3*a2(2:end)';
+    Delta1 += delta2(2:end)*a1';
+    Delta2 += delta3*a2';
 end
 Theta1_grad = (1/m)*Delta1;
 Theta2_grad = (1/m)*Delta2;
