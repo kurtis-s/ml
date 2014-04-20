@@ -72,6 +72,11 @@ for z=1:m,
     J += -Y(z,:)*log(h2(z,:))'-(1-Y(z,:))*log(1-h2(z,:))';
 end
 J = (1/m)*J;
+
+%Add Regularization
+Theta1_NoBiasTerm = Theta1(:, 2:end);
+Theta2_NoBiasTerm = Theta2(:, 2:end);
+J += (lambda/(2*m))*(sum(Theta1_NoBiasTerm(:).^2) + sum(Theta2_NoBiasTerm(:).^2));
 % =========================================================================
 
 % Unroll gradients
