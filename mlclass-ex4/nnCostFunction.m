@@ -90,26 +90,12 @@ for t=1:m,
 
     delta3 = a3 - Y'(:,t);
     delta2 = Theta2'*delta3.*(a2.*(1-a2));
-%    size delta2
-%    size(a1) %a1 is 401x1
-%    display(a1)
-%    size(delta2(2:end)) %delta2 is 25x1
-%    display('theta1')
-%    size(Theta1_NoBiasTerm) % 25x400
-%    display('theta2')
-%    size(Theta2_NoBiasTerm) % 10x25
-%    Delta = delta2*a1'
-%    size(delta2) %26x1
-%    size(delta2(2:end)) %25x1
-%    size(a1)
-%    size(a1(2:end))
+
     Delta1 += delta2(2:end)*a1(2:end)';
-%    size(delta3)
-%    size(a2)
     Delta2 += delta3*a2(2:end)';
 end
-Theta1_grad = (1/m)*Delta1; %size of Theta1
-Theta2_grad = (1/m)*Delta2; %size of theta2
+Theta1_grad = (1/m)*Delta1;
+Theta2_grad = (1/m)*Delta2;
 % =========================================================================
 
 % Unroll gradients
