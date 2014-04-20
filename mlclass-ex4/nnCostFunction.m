@@ -104,9 +104,12 @@ for t=1:m,
 %    size(a1)
 %    size(a1(2:end))
     Delta1 += delta2(2:end)*a1(2:end)';
+%    size(delta3)
+%    size(a2)
+    Delta2 += delta3*a2(2:end)';
 end
-%Theta1_grad = (1/m)*Delta1 %size of Theta1
-%Theta2_grad = (1/m)*Delta2 %size of theta2
+Theta1_grad = (1/m)*Delta1; %size of Theta1
+Theta2_grad = (1/m)*Delta2; %size of theta2
 % =========================================================================
 
 % Unroll gradients
