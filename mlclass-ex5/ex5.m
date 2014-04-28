@@ -164,7 +164,7 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+lambda = 3;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
@@ -218,3 +218,7 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+%% =========== Part 9: Optional calculate test set error =============
+J = linearRegCostFunction(X_poly_test, ytest, theta, 0);
+fprintf('Test set error\n');
+display(J);
