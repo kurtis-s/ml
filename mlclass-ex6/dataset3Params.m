@@ -22,14 +22,6 @@ sigma = 0.3;
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
-%possible_vals = [0.01; 0.03; 0.1; 0.3; 1; 3; 10; 30];
-%[sigmas, Cs] = meshgrid(possible_vals, possible_vals);
-%possible_combos = [sigmas(:) Cs(:)]; %The cartesian product; possible combos of sigma and C
-%model = svmTrain(X, y, C, @(X, Y) gaussianKernel(X, y, sigma)); 
-%display("model");
-%size(model)
-%predictions = svmPredict(model, Xval);
-
 possible_vals = [0.01; 0.03; 0.1; 0.3; 1; 3; 10; 30];
 dim = size(possible_vals);
 for i=1:dim, %iterate over possible C values
