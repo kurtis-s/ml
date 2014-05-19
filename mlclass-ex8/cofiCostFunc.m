@@ -39,9 +39,12 @@ Theta_grad = zeros(size(Theta));
 %        Theta_grad - num_users x num_features matrix, containing the 
 %                     partial derivatives w.r.t. to each element of Theta
 %
-J = (1/2)*sum(sum((((Theta*X')' - Y).^2).*R));
 num_movies = size(Y, 1);
 num_users = size(Y, 2);
+
+J = (1/2)*sum(sum((((Theta*X')' - Y).^2).*R));
+J = J + (lambda/2)*sum(sum(Theta.^2)) + (lambda/2)*sum(sum(X.^2));
+
 for i=1:num_movies,
     idx = find(R(i, :)==1); %index of users that rated the movie
 
