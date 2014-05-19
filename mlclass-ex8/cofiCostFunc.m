@@ -40,6 +40,26 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 J = (1/2)*sum(sum((((Theta*X')' - Y).^2).*R));
+num_movies = size(Y, 1);
+num_users = size(Y, 2);
+for i=1:num_movies,
+    idx = find(R(i, :)==1); %index of users that rated the movie
+
+    Theta_temp = Theta(idx,:);
+    Y_temp = Y(i, idx);
+    inner_sum = (X(i,:) * Theta_temp' - Y_temp);
+
+    X_grad(i,:) = inner_sum * Theta_temp;
+end
+for j=1:num_users,
+    idx = find(R(:, j)==1); %index of movies that were rated by the user 
+
+    Theta_temp = Theta(j, :); %thetas for the user
+    Y_temp = Y(idx, j); %movies rated by the user
+    inner_sum = (X(idx, :) * Theta_temp' - Y_temp);
+
+    Theta_grad(j, :) = inner_sum' * X(idx, :);
+end
 % =============================================================
 
 grad = [X_grad(:); Theta_grad(:)];
