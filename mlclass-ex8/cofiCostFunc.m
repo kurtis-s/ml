@@ -52,7 +52,7 @@ for i=1:num_movies,
     Y_temp = Y(i, idx);
     inner_sum = (X(i,:) * Theta_temp' - Y_temp);
 
-    X_grad(i,:) = inner_sum * Theta_temp;
+    X_grad(i,:) = inner_sum * Theta_temp + lambda * X(i,:);
 end
 for j=1:num_users,
     idx = find(R(:, j)==1); %index of movies that were rated by the user 
@@ -61,7 +61,7 @@ for j=1:num_users,
     Y_temp = Y(idx, j); %movies rated by the user
     inner_sum = (X(idx, :) * Theta_temp' - Y_temp);
 
-    Theta_grad(j, :) = inner_sum' * X(idx, :);
+    Theta_grad(j, :) = inner_sum' * X(idx, :) + lambda * Theta_temp;
 end
 % =============================================================
 
